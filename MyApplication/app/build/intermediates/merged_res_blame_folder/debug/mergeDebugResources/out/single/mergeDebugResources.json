@@ -1,0 +1,134 @@
+[
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_customer_book.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_customer_book.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_home.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_customer_dashboard.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_customer_dashboard.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_item_parcel.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/item_parcel.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_bc.jpg.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/bc.jpg"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_my_parcel.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_my_parcel.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_main.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/xml_backup_rules.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_badrul.png.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/badrul.png"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_bg_badge_outline.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/bg_badge_outline.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_item_stat_card.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/item_stat_card.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_bg_badge.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/bg_badge.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-anydpi_logo.png.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-anydpi/logo.png"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_bg_card.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/bg_card.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/layout_activity_login.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_bg_gradient.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/bg_gradient.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_logo.png.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/logo.png"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/drawable_images.jpg.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/drawable/images.jpg"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.emranhss.myapplication.app-debug-41:/xml_data_extraction_rules.xml.flat",
+        "source": "com.emranhss.myapplication.app-main-43:/xml/data_extraction_rules.xml"
+    }
+]

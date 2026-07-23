@@ -9,5 +9,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="halkanil">#D7EAFA</color>
 
+    <color name="colorWarning">#FFC107</color>
+    <color name="colorWarningDark">#E0A800</color>
+    <color name="colorPrimary">#0D6EFD</color>
+    <color name="colorSuccess">#198754</color>
+    <color name="colorDanger">#DC3545</color>
+    <color name="colorDark">#212529</color>
+    <color name="colorMuted">#6C757D</color>
+    <color name="colorLight">#F8F9FA</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBorder">#DEE2E6</color>
+
 
 </resources>
