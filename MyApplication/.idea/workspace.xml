@@ -5,6 +5,11 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-36.1/data/res/layout/simple_dropdown_item_1line.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_badge.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
@@ -21,6 +26,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_gradient.xml">
+        <config>
+          <theme>@style/Theme.MyApplication</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_back.xml">
         <config>
           <theme>@style/Theme.MyApplication</theme>
         </config>
@@ -107,10 +117,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -253,12 +263,12 @@
       <map>
         <entry key="com.emranhss.myapplication">
           <value>
-            <CheckInfo lastCheckTimestamp="1784981034544" />
+            <CheckInfo lastCheckTimestamp="1785156057789" />
           </value>
         </entry>
         <entry key="com.emranhss.myapplication.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1784981034533" />
+            <CheckInfo lastCheckTimestamp="1785156057767" />
           </value>
         </entry>
       </map>
