@@ -6,7 +6,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.emranhss.myapplication.api.ApiClient;
+import com.emranhss.myapplication.api.ApiService;
+import com.emranhss.myapplication.model.response.CustomerResponse;
+import com.emranhss.myapplication.model.response.ParcelResponse;
+import com.emranhss.myapplication.session.SessionManager;
 import com.google.android.material.card.MaterialCardView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,15 +26,22 @@ import com.emranhss.myapplication.adapter.ParcelAdapter;
 
 import com.emranhss.myapplication.model.Parcel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CustomerDashboard extends AppCompatActivity {
 
     // Base URL used to resolve the customer's profile image, same role as
     // `imageUrl + customer?.image` in the Angular template.
-    private static final String IMAGE_BASE_URL = "https://your-api.example.com/uploads/";
+//    private static final String IMAGE_BASE_URL = "https://your-api.example.com/uploads/";
 
     private TextView txtToolbarUserName;
     private TextView txtUserName, txtUserEmail, txtUserPhone, txtUserRole, txtAddPhoto;
@@ -133,11 +146,24 @@ public class CustomerDashboard extends AppCompatActivity {
 
     /** Replace with your real user/session source (SharedPreferences, ViewModel, API, etc). */
     private void loadUserData() {
-        String name = "Jane Doe";
-        String email = "jane.doe@example.com";
-        String phone = "+1 555 123 4567";
+
+        String imageUrl = ApiClient.IMAGE_URL + "customer/";
+
+        SessionManager sessionManager = new SessionManager(this);
+
+        CustomerResponse customer = sessionManager.getCustomer();
+
+        if (customer == null) {
+            Toast.makeText(this, "Please login again", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        String name = customer.getName();
+        String email = customer.getEmail();
+        String phone = customer.getPhone();
         String role = "CUSTOMER";
-        String customerImage = null; // e.g. "avatars/jane.jpg", or null if not set
+        String customerImage = imageUrl + customer.getImage(); // e.g. "avatars/jane.jpg", or null if not set
 
         txtToolbarUserName.setText(name);
         txtUserName.setText(name);
@@ -147,8 +173,9 @@ public class CustomerDashboard extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(customerImage)) {
             Glide.with(this)
-                    .load(IMAGE_BASE_URL + customerImage)
+                    .load(customerImage)
                     .placeholder(android.R.drawable.sym_def_app_icon)
+                    .error(android.R.drawable.sym_def_app_icon)
                     .circleCrop()
                     .into(imgAvatar);
             txtAddPhoto.setVisibility(View.GONE);
@@ -184,13 +211,72 @@ public class CustomerDashboard extends AppCompatActivity {
 
     /** Replace with real data loaded from your API/repository. */
     private void loadRecentParcels() {
-        recentParcels.clear();
-        recentParcels.add(new Parcel("PKG-000123", Parcel.STATUS_IN_TRANSIT, new Date()));
-        recentParcels.add(new Parcel("PKG-000119", Parcel.STATUS_DELIVERED, new Date()));
-        recentParcels.add(new Parcel("PKG-000108", Parcel.STATUS_PENDING, new Date()));
+        SessionManager sessionManager = new SessionManager(this);
+        CustomerResponse customer = sessionManager.getCustomer();
 
-        adapter.notifyDataSetChanged();
-        updateEmptyState();
+        if (customer == null) {
+            Toast.makeText(this, "Please login again", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+
+        Long customerId = customer.getId();
+
+        ApiService apiService = ApiClient.getClient(getApplicationContext());
+
+        apiService.getCustomerParcels(customerId)
+                .enqueue(new Callback<List<ParcelResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<ParcelResponse>> call,
+                                           Response<List<ParcelResponse>> response) {
+
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            recentParcels.clear();
+
+
+
+                            for (ParcelResponse item : response.body()) {
+
+                                SimpleDateFormat apiFormat =
+                                        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+
+                                Date date;
+
+                                try {
+                                    date = apiFormat.parse(item.getCreatedAt());
+                                } catch (ParseException e) {
+                                    date = new Date();
+                                }
+
+                                Parcel parcel = new Parcel(
+                                        item.getTrackingCode(),
+                                        item.getStatus(),
+                                        date   // convert if necessary
+                                );
+
+                                recentParcels.add(parcel);
+                            }
+
+                            adapter.notifyDataSetChanged();
+                            updateEmptyState();
+
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "No parcels found",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ParcelResponse>> call, Throwable t) {
+
+                        Toast.makeText(getApplicationContext(),
+                                t.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void updateEmptyState() {

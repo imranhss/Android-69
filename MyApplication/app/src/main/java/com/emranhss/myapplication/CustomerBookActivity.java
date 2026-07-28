@@ -35,6 +35,17 @@ public class CustomerBookActivity extends AppCompatActivity {
 
     ApiService api;
 
+    // Selected display names, used to build the full address string
+    private String senderCountryName = "";
+    private String senderDivisionName = "";
+    private String senderDistrictName = "";
+    private String senderPoliceName = "";
+
+    private String receiverCountryName = "";
+    private String receiverDivisionName = "";
+    private String receiverDistrictName = "";
+    private String receiverPoliceName = "";
+
     // Sender
     private TextInputEditText etSenderName;
     private TextInputEditText etSenderPhone;
@@ -79,10 +90,14 @@ public class CustomerBookActivity extends AppCompatActivity {
     private MaterialButton btnBookParcel;
 
     // Data Lists
+    // Split lists so sender and receiver never clobber each other
+    private List<Division> senderDivisions = new ArrayList<>();
+    private List<District> senderDistricts = new ArrayList<>();
+    private List<PoliceStation> senderPoliceStations = new ArrayList<>();
     private List<Country> countries = new ArrayList<>();
-    private List<Division> divisions = new ArrayList<>();
-    private List<District> districts = new ArrayList<>();
-    private List<PoliceStation> policeStations = new ArrayList<>();
+    private List<Division> receiverDivisions = new ArrayList<>();
+    private List<District> receiverDistricts = new ArrayList<>();
+    private List<PoliceStation> receiverPoliceStations = new ArrayList<>();
 
     // Selected IDs
     private long countryId;
@@ -138,66 +153,57 @@ public class CustomerBookActivity extends AppCompatActivity {
         selectedOriginPoliceId = customer.getPoliceStationId();
 
         spCountry.setOnItemClickListener((parent, view, position, id) -> {
-
-            countryId=countries.get(position).getId();
-
+            Country c = countries.get(position);
+            countryId = c.getId();
+            senderCountryName = c.getName();
             loadDivision(countryId);
-
         });
 
         rpCountry.setOnItemClickListener((parent, view, position, id) -> {
-
-            destinationCountryId=countries.get(position).getId();
-
-            System.out.println(destinationCountryId);
-
+            Country c = countries.get(position);
+            destinationCountryId = c.getId();
+            receiverCountryName = c.getName();
             loadDestinationDivision(destinationCountryId);
-
         });
 
         spDivision.setOnItemClickListener((parent, view, position, id) -> {
-
-            divisionId = divisions.get(position).getId();
-
+            Division d = senderDivisions.get(position);
+            divisionId = d.getId();
+            senderDivisionName = d.getName();
             loadDistrict(divisionId);
-
         });
 
         rpDivision.setOnItemClickListener((parent, view, position, id) -> {
-
-            destinationDivisionId = divisions.get(position).getId();
-            System.out.println();
-
+            Division d = receiverDivisions.get(position);
+            destinationDivisionId = d.getId();
+            receiverDivisionName = d.getName();
             loadDestinationDistrict(destinationDivisionId);
-
         });
 
         spDistrict.setOnItemClickListener((parent, view, position, id) -> {
-
-            districtId = districts.get(position).getId();
-
+            District d = senderDistricts.get(position);
+            districtId = d.getId();
+            senderDistrictName = d.getName();
             loadPoliceStation(districtId);
-
         });
-rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
 
-            destinationDistrictId = districts.get(position).getId();
-
+        rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
+            District d = receiverDistricts.get(position);
+            destinationDistrictId = d.getId();
+            receiverDistrictName = d.getName();
             loadDestinationPoliceStation(destinationDistrictId);
-
         });
 
         spOriginPolice.setOnItemClickListener((parent, view, position, id) -> {
-
-            originPoliceId = policeStations.get(position).getId();
-
+            PoliceStation p = senderPoliceStations.get(position);
+            selectedOriginPoliceId = p.getId();   // <-- fixed: was writing to unused originPoliceId
+            senderPoliceName = p.getName();
         });
 
-
         spDestinationPolice.setOnItemClickListener((parent, view, position, id) -> {
-
-            selectedDestinationPoliceId = policeStations.get(position).getId();
-
+            PoliceStation p = receiverPoliceStations.get(position);
+            selectedDestinationPoliceId = p.getId();
+            receiverPoliceName = p.getName();
         });
 
         spServiceType.setOnItemClickListener((parent,view,pos,id)->{
@@ -342,7 +348,6 @@ rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
 
     }
 
-
     private void loadCountries(){
 
         api.getCountries().enqueue(new Callback<List<Country>>() {
@@ -421,259 +426,107 @@ rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
 
     }
 
+
     private void loadDivision(long countryId){
-
-        api.getDivisionByCountry(countryId)
-                .enqueue(new Callback<List<Division>>() {
-
-                    @Override
-                    public void onResponse(Call<List<Division>> call,
-                                           Response<List<Division>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            divisions = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(Division d : divisions){
-                                names.add(d.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            spDivision.setAdapter(adapter);
-
-                        }
-
-                    }
-
-
-
-                    @Override
-                    public void onFailure(Call<List<Division>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getDivisionByCountry(countryId).enqueue(new Callback<List<Division>>() {
+            @Override
+            public void onResponse(Call<List<Division>> call, Response<List<Division>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    senderDivisions = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(Division d : senderDivisions) names.add(d.getName());
+                    spDivision.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names));
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Division>> call, Throwable t) {}
+        });
     }
 
     private void loadDestinationDivision(long destinationCountryId){
-
-        api.getDivisionByCountry(destinationCountryId)
-                .enqueue(new Callback<List<Division>>() {
-
-                    @Override
-                    public void onResponse(Call<List<Division>> call,
-                                           Response<List<Division>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            divisions = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(Division d : divisions){
-                                names.add(d.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            rpDivision.setAdapter(adapter);
-
-                        }
-
-                    }
-
-
-
-                    @Override
-                    public void onFailure(Call<List<Division>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getDivisionByCountry(destinationCountryId).enqueue(new Callback<List<Division>>() {
+            @Override
+            public void onResponse(Call<List<Division>> call, Response<List<Division>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    receiverDivisions = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(Division d : receiverDivisions) names.add(d.getName());
+                    rpDivision.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names));
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Division>> call, Throwable t) {}
+        });
     }
 
     private void loadDistrict(long divisionId){
-
-        api.getDistrictByDivision(divisionId)
-                .enqueue(new Callback<List<District>>() {
-
-                    @Override
-                    public void onResponse(Call<List<District>> call,
-                                           Response<List<District>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            districts = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(District d : districts){
-                                names.add(d.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            spDistrict.setAdapter(adapter);
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<District>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getDistrictByDivision(divisionId).enqueue(new Callback<List<District>>() {
+            @Override
+            public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    senderDistricts = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(District d : senderDistricts) names.add(d.getName());
+                    spDistrict.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names));
+                }
+            }
+            @Override
+            public void onFailure(Call<List<District>> call, Throwable t) {}
+        });
     }
 
     private void loadDestinationDistrict(long destinationDivisionId){
-
-        api.getDistrictByDivision(destinationDivisionId)
-                .enqueue(new Callback<List<District>>() {
-
-                    @Override
-                    public void onResponse(Call<List<District>> call,
-                                           Response<List<District>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            districts = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(District d : districts){
-                                names.add(d.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            rpDistrict.setAdapter(adapter);
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<District>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getDistrictByDivision(destinationDivisionId).enqueue(new Callback<List<District>>() {
+            @Override
+            public void onResponse(Call<List<District>> call, Response<List<District>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    receiverDistricts = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(District d : receiverDistricts) names.add(d.getName());
+                    rpDistrict.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names));
+                }
+            }
+            @Override
+            public void onFailure(Call<List<District>> call, Throwable t) {}
+        });
     }
 
     private void loadPoliceStation(long districtId){
-
-        api.getPoliceStationByDistrict(districtId)
-                .enqueue(new Callback<List<PoliceStation>>() {
-
-                    @Override
-                    public void onResponse(Call<List<PoliceStation>> call,
-                                           Response<List<PoliceStation>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            policeStations = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(PoliceStation p : policeStations){
-                                names.add(p.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            // Same list for origin and destination
-                            spOriginPolice.setAdapter(adapter);
-                            spDestinationPolice.setAdapter(adapter);
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<PoliceStation>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getPoliceStationByDistrict(districtId).enqueue(new Callback<List<PoliceStation>>() {
+            @Override
+            public void onResponse(Call<List<PoliceStation>> call, Response<List<PoliceStation>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    senderPoliceStations = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(PoliceStation p : senderPoliceStations) names.add(p.getName());
+                    spOriginPolice.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names)); // origin only
+                }
+            }
+            @Override
+            public void onFailure(Call<List<PoliceStation>> call, Throwable t) {}
+        });
     }
 
-
     private void loadDestinationPoliceStation(long destinationDistrictId){
-
-        api.getPoliceStationByDistrict(destinationDistrictId)
-                .enqueue(new Callback<List<PoliceStation>>() {
-
-                    @Override
-                    public void onResponse(Call<List<PoliceStation>> call,
-                                           Response<List<PoliceStation>> response) {
-
-                        if(response.isSuccessful() && response.body()!=null){
-
-                            policeStations = response.body();
-
-                            List<String> names = new ArrayList<>();
-
-                            for(PoliceStation p : policeStations){
-                                names.add(p.getName());
-                            }
-
-                            ArrayAdapter<String> adapter =
-                                    new ArrayAdapter<>(
-                                            CustomerBookActivity.this,
-                                            android.R.layout.simple_dropdown_item_1line,
-                                            names);
-
-                            // Same list for origin and destination
-                            spOriginPolice.setAdapter(adapter);
-                            spDestinationPolice.setAdapter(adapter);
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<PoliceStation>> call,
-                                          Throwable t) {
-
-                    }
-
-                });
-
+        api.getPoliceStationByDistrict(destinationDistrictId).enqueue(new Callback<List<PoliceStation>>() {
+            @Override
+            public void onResponse(Call<List<PoliceStation>> call, Response<List<PoliceStation>> response) {
+                if(response.isSuccessful() && response.body()!=null){
+                    receiverPoliceStations = response.body();
+                    List<String> names = new ArrayList<>();
+                    for(PoliceStation p : receiverPoliceStations) names.add(p.getName());
+                    spDestinationPolice.setAdapter(new ArrayAdapter<>(CustomerBookActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, names)); // destination only
+                }
+            }
+            @Override
+            public void onFailure(Call<List<PoliceStation>> call, Throwable t) {}
+        });
     }
 
     private void calculateCharge(){
@@ -730,6 +583,25 @@ rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
 
     }
 
+
+    private String buildFullAddress(String addressLine, String policeName,
+                                    String districtName, String divisionName,
+                                    String countryName) {
+
+        StringBuilder sb = new StringBuilder();
+
+        if (!addressLine.isEmpty()) sb.append(addressLine);
+
+        for (String part : new String[]{policeName, districtName, divisionName, countryName}) {
+            if (part != null && !part.trim().isEmpty()) {
+                if (sb.length() > 0) sb.append(", ");
+                sb.append(part.trim());
+            }
+        }
+
+        return sb.toString();
+    }
+
     private void bookParcel() {
 
         ParcelRequest request = new ParcelRequest();
@@ -738,13 +610,13 @@ rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
 
         request.setSenderName(etSenderName.getText().toString().trim());
         request.setSenderPhone(etSenderPhone.getText().toString().trim());
-        request.setSenderAddress(etSenderAddress.getText().toString().trim());
+
 
         request.setOriginPoliceStationId(selectedOriginPoliceId);
 
         request.setReceiverName(etReceiverName.getText().toString().trim());
         request.setReceiverPhone(etReceiverPhone.getText().toString().trim());
-        request.setReceiverAddress(etReceiverAddress.getText().toString().trim());
+
 
         request.setDestinationPoliceStationId(selectedDestinationPoliceId);
 
@@ -753,6 +625,17 @@ rpDistrict.setOnItemClickListener((parent, view, position, id) -> {
         request.setWeight(
                 Double.parseDouble(etWeight.getText().toString())
         );
+
+        String fullSenderAddress = buildFullAddress(
+                etSenderAddress.getText().toString().trim(),
+                senderPoliceName, senderDistrictName, senderDivisionName, senderCountryName);
+
+        String fullReceiverAddress = buildFullAddress(
+                etReceiverAddress.getText().toString().trim(),
+                receiverPoliceName, receiverDistrictName, receiverDivisionName, receiverCountryName);
+
+        request.setSenderAddress(fullSenderAddress);
+        request.setReceiverAddress(fullReceiverAddress);
 
         request.setDescription("");
 

@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class ParcelResponse {
+
     private Long id;
     private String trackingCode;
 

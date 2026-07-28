@@ -2,6 +2,9 @@ package com.emranhss.myapplication.model;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class Parcel {
 
     public static final String STATUS_PENDING = "PENDING";
@@ -19,16 +22,6 @@ public class Parcel {
         this.createdAt = createdAt;
     }
 
-    public String getTrackingCode() {
-        return trackingCode;
-    }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 }
 
