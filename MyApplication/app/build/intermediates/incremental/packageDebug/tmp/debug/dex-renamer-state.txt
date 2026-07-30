@@ -1,4 +1,4 @@
-#Tue Jul 28 15:59:03 BDT 2026
+#Wed Jul 29 18:20:49 BDT 2026
 base.0=C\:\\Users\\Admin\\Downloads\\MyApplication-fixed\\MyApplication\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=F\:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\Admin\\Downloads\\MyApplication-fixed\\MyApplication\\app\\build\\intermediates\\global_synthetics_dex\\debug\\generateDebugGlobalSynthetics\\classes.dex

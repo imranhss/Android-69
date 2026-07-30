@@ -60,6 +60,8 @@ public class CustomerDashboard extends AppCompatActivity {
     private ParcelAdapter adapter;
     private final List<Parcel> recentParcels = new ArrayList<>();
 
+    int recentPaercelNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,7 @@ public class CustomerDashboard extends AppCompatActivity {
     }
 
     private void bindViews() {
+
         txtToolbarUserName = findViewById(R.id.txtToolbarUserName);
 
         imgAvatar = findViewById(R.id.imgAvatar);
@@ -147,7 +150,7 @@ public class CustomerDashboard extends AppCompatActivity {
     /** Replace with your real user/session source (SharedPreferences, ViewModel, API, etc). */
     private void loadUserData() {
 
-        String imageUrl = ApiClient.IMAGE_URL + "customer/";
+        String imageUrl = ApiClient.IMAGE_URL + "/customer";
 
         SessionManager sessionManager = new SessionManager(this);
 
@@ -187,30 +190,22 @@ public class CustomerDashboard extends AppCompatActivity {
 
     /** Replace with real counts from your parcels API/repository. */
     private void loadStats() {
-        int total = recentParcelsPlaceholderTotal();
-        int inTransit = 4;
-        int delivered = 9;
-        int pending = 2;
 
-        txtStatTotalValue.setText(String.valueOf(total));
         txtStatTotalLabel.setText("Total Parcels");
 
-        txtStatInTransitValue.setText(String.valueOf(inTransit));
         txtStatInTransitLabel.setText("In Transit");
 
-        txtStatDeliveredValue.setText(String.valueOf(delivered));
         txtStatDeliveredLabel.setText("Delivered");
 
-        txtStatPendingValue.setText(String.valueOf(pending));
         txtStatPendingLabel.setText("Pending");
+
     }
 
-    private int recentParcelsPlaceholderTotal() {
-        return 15;
-    }
+
 
     /** Replace with real data loaded from your API/repository. */
     private void loadRecentParcels() {
+
         SessionManager sessionManager = new SessionManager(this);
         CustomerResponse customer = sessionManager.getCustomer();
 
@@ -218,8 +213,6 @@ public class CustomerDashboard extends AppCompatActivity {
             Toast.makeText(this, "Please login again", Toast.LENGTH_SHORT).show();
             return;
         }
-
-
 
         Long customerId = customer.getId();
 
@@ -231,11 +224,13 @@ public class CustomerDashboard extends AppCompatActivity {
                     public void onResponse(Call<List<ParcelResponse>> call,
                                            Response<List<ParcelResponse>> response) {
 
+                        int pendingCount = 0;
+                        int inTransitCount = 0;
+                        int deliveredCount = 0;
+
                         if (response.isSuccessful() && response.body() != null) {
 
                             recentParcels.clear();
-
-
 
                             for (ParcelResponse item : response.body()) {
 
@@ -257,7 +252,23 @@ public class CustomerDashboard extends AppCompatActivity {
                                 );
 
                                 recentParcels.add(parcel);
+
+                                // Count status
+                                if ("PENDING".equalsIgnoreCase(item.getStatus())) {
+                                    pendingCount++;
+                                } else if ("IN_TRANSIT".equalsIgnoreCase(item.getStatus())) {
+                                    inTransitCount++;
+                                } else if ("DELIVERED".equalsIgnoreCase(item.getStatus())) {
+                                    deliveredCount++;
+                                }
                             }
+
+                            recentPaercelNumber = recentParcels.size();
+                            txtStatTotalValue.setText(String.valueOf(recentPaercelNumber));
+
+                            txtStatDeliveredValue.setText(String.valueOf(deliveredCount));
+                            txtStatPendingValue.setText(String.valueOf(pendingCount));
+                            txtStatInTransitValue.setText(String.valueOf(inTransitCount));
 
                             adapter.notifyDataSetChanged();
                             updateEmptyState();
@@ -278,6 +289,11 @@ public class CustomerDashboard extends AppCompatActivity {
                     }
                 });
     }
+
+//    private int recentParcelsPlaceholderTotal() {
+//        System.out.println(recentPaercelNumber);
+//        return 15;
+//    }
 
     private void updateEmptyState() {
         boolean hasParcels = !recentParcels.isEmpty();
