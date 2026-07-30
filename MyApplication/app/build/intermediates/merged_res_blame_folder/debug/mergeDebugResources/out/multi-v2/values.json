@@ -57,23 +57,6 @@
                     }
                 },
                 {
-                    "source": "F:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "7,20,15,16,18,17,13,14,11,12,19,9,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "286,831,606,652,741,696,512,559,414,461,786,370,55,102,149,196,241,328",
-                        "endColumns": "41,45,45,43,44,44,46,46,46,50,44,42,46,46,46,44,44,41",
-                        "endOffsets": "323,872,647,691,781,736,554,601,456,507,826,408,97,144,191,236,281,365"
-                    },
-                    "to": {
-                        "startLines": "745,760,761,762,763,764,765,766,767,768,769,813,1211,1212,1213,1224,1225,1228",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "39706,40769,40815,40861,40905,40950,40995,41042,41089,41136,41187,44201,72013,72060,72107,72851,72896,73062",
-                        "endColumns": "41,45,45,43,44,44,46,46,46,50,44,42,46,46,46,44,44,41",
-                        "endOffsets": "39743,40810,40856,40900,40945,40990,41037,41084,41131,41182,41227,44239,72055,72102,72149,72891,72936,73099"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\9.5.0\\transforms\\647d9cafa324dba5c8361d17cf9c8bb1\\transformed\\lifecycle-runtime-2.6.2\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -91,22 +74,22 @@
                     }
                 },
                 {
-                    "source": "F:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\src\\main\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\Admin\\Downloads\\MyApplication (1)\\MyApplication\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "100",
-                        "endLines": "14",
-                        "endColumns": "12",
-                        "endOffsets": "800"
+                        "startLines": "11,3,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "426,118,568",
+                        "endLines": "14,9,22",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "560,418,887"
                     },
                     "to": {
-                        "startLines": "9714",
-                        "startColumns": "4",
-                        "startOffsets": "714830",
-                        "endLines": "9726",
-                        "endColumns": "12",
-                        "endOffsets": "715409"
+                        "startLines": "6857,6861,7256",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "496257,496393,523677",
+                        "endLines": "6860,6867,7262",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "496388,496687,523990"
                     }
                 },
                 {
@@ -273,22 +256,20 @@
                     }
                 },
                 {
-                    "source": "F:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\Admin\\Downloads\\MyApplication (1)\\MyApplication\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "11,3,16",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "426,118,568",
-                        "endLines": "14,9,22",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "560,418,887"
+                        "startLines": "7,20,15,16,18,17,13,14,11,12,19,9,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "286,831,606,652,741,696,512,559,414,461,786,370,55,102,149,196,241,328",
+                        "endColumns": "41,45,45,43,44,44,46,46,46,50,44,42,46,46,46,44,44,41",
+                        "endOffsets": "323,872,647,691,781,736,554,601,456,507,826,408,97,144,191,236,281,365"
                     },
                     "to": {
-                        "startLines": "6857,6861,7256",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "496257,496393,523677",
-                        "endLines": "6860,6867,7262",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "496388,496687,523990"
+                        "startLines": "745,760,761,762,763,764,765,766,767,768,769,813,1211,1212,1213,1224,1225,1228",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "39706,40769,40815,40861,40905,40950,40995,41042,41089,41136,41187,44201,72013,72060,72107,72851,72896,73062",
+                        "endColumns": "41,45,45,43,44,44,46,46,46,50,44,42,46,46,46,44,44,41",
+                        "endOffsets": "39743,40810,40856,40900,40945,40990,41037,41084,41131,41182,41227,44239,72055,72102,72149,72891,72936,73099"
                     }
                 },
                 {
@@ -308,23 +289,6 @@
                         "endLines": "2394,2429,2473,15877,15881",
                         "endColumns": "56,64,63,24,24",
                         "endOffsets": "163558,165403,167688,1066337,1066486"
-                    }
-                },
-                {
-                    "source": "F:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "51",
-                        "endOffsets": "63"
-                    },
-                    "to": {
-                        "startLines": "2579",
-                        "startColumns": "4",
-                        "startOffsets": "174871",
-                        "endColumns": "51",
-                        "endOffsets": "174918"
                     }
                 },
                 {
@@ -361,6 +325,42 @@
                         "startOffsets": "163650",
                         "endColumns": "57",
                         "endOffsets": "163703"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Admin\\Downloads\\MyApplication (1)\\MyApplication\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "51",
+                        "endOffsets": "63"
+                    },
+                    "to": {
+                        "startLines": "2579",
+                        "startColumns": "4",
+                        "startOffsets": "174871",
+                        "endColumns": "51",
+                        "endOffsets": "174918"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Admin\\Downloads\\MyApplication (1)\\MyApplication\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endLines": "14",
+                        "endColumns": "12",
+                        "endOffsets": "800"
+                    },
+                    "to": {
+                        "startLines": "9714",
+                        "startColumns": "4",
+                        "startOffsets": "714830",
+                        "endLines": "9726",
+                        "endColumns": "12",
+                        "endOffsets": "715409"
                     }
                 },
                 {

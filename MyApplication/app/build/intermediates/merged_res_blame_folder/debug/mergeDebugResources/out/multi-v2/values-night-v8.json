@@ -4,6 +4,25 @@
             "outputFile": "com.emranhss.myapplication.app-mergeDebugResources-39:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Admin\\Downloads\\MyApplication (1)\\MyApplication\\app\\src\\main\\res\\values-night\\themes.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endLines": "14",
+                        "endColumns": "12",
+                        "endOffsets": "800"
+                    },
+                    "to": {
+                        "startLines": "64",
+                        "startColumns": "4",
+                        "startOffsets": "7307",
+                        "endLines": "76",
+                        "endColumns": "12",
+                        "endOffsets": "7886"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\9.5.0\\transforms\\f14bef7e10488d3a007022311310efd5\\transformed\\appcompat-1.7.1\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
@@ -35,25 +54,6 @@
                         "startOffsets": "687,762,873,962,1063,1186,1297,1404,1533,1640,1737,1836,1957,2064,2167,2292,2419,2568,2663,2772,2893,3036,3167,3294,3443,3570,3687,3806,3947,4070,4215,4362,4531,4619,4743,4845,4947,5063,5187,5289,5403,5531,5667,5783,5905,6041,6185,6309,6429,6563,6705,6825,6935,7047,7173,7980,8097,8234,8358,8488,8610,8748,8882,8998",
                         "endColumns": "74,110,88,100,122,110,106,128,106,96,98,120,106,102,124,126,148,94,108,120,142,130,126,148,126,116,118,140,122,144,146,168,87,123,101,101,115,123,101,113,127,135,115,121,135,143,123,119,133,141,119,109,111,125,133,116,136,123,129,121,137,133,115,119",
                         "endOffsets": "757,868,957,1058,1181,1292,1399,1528,1635,1732,1831,1952,2059,2162,2287,2414,2563,2658,2767,2888,3031,3162,3289,3438,3565,3682,3801,3942,4065,4210,4357,4526,4614,4738,4840,4942,5058,5182,5284,5398,5526,5662,5778,5900,6036,6180,6304,6424,6558,6700,6820,6930,7042,7168,7302,8092,8229,8353,8483,8605,8743,8877,8993,9113"
-                    }
-                },
-                {
-                    "source": "F:\\JEE-69\\Android\\Android-69\\MyApplication\\app\\src\\main\\res\\values-night\\themes.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "100",
-                        "endLines": "14",
-                        "endColumns": "12",
-                        "endOffsets": "800"
-                    },
-                    "to": {
-                        "startLines": "64",
-                        "startColumns": "4",
-                        "startOffsets": "7307",
-                        "endLines": "76",
-                        "endColumns": "12",
-                        "endOffsets": "7886"
                     }
                 }
             ]

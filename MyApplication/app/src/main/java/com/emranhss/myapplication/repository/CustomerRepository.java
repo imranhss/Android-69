@@ -6,6 +6,8 @@ import com.emranhss.myapplication.api.ApiClient;
 import com.emranhss.myapplication.api.ApiService;
 import com.emranhss.myapplication.model.response.CustomerResponse;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -22,6 +24,20 @@ public class CustomerRepository {
 
         Call<CustomerResponse> call =
                 apiService.getCustomerByUserId(userId);
+
+        call.enqueue(callback);
+
+    }
+
+    /**
+     * @param imagePart nullable — pass null when the user didn't pick a photo.
+     */
+    public void registerCustomer(RequestBody customerJson,
+                                 MultipartBody.Part imagePart,
+                                 Callback<CustomerResponse> callback) {
+
+        Call<CustomerResponse> call =
+                apiService.registerCustomer(customerJson, imagePart);
 
         call.enqueue(callback);
 

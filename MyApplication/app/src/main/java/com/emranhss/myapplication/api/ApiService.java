@@ -12,11 +12,15 @@ import com.emranhss.myapplication.model.response.ParcelResponse;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -26,6 +30,16 @@ public interface ApiService {
 
     @GET("api/customer/user/{id}")
     Call<CustomerResponse> getCustomerByUserId(@Path("id") Long id);
+
+    // Customer Registration — mirrors Angular's `customerService.create(customer, image)`
+    // posting to `${environment.apiUrl}customer/`. The "customer" part carries the
+    // CustomerRegisterRequest as JSON; "image" is optional and omitted when null.
+    @Multipart
+    @POST("api/customer/")
+    Call<CustomerResponse> registerCustomer(
+            @Part("customer") RequestBody customer,
+            @Part MultipartBody.Part image
+    );
 
 
     @GET("api/country/")

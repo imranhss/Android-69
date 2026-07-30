@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxHeight="520dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txtDialogTrackingCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textColor="@color/colorWarning"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="PKG-000123" />
+
+        <TextView
+            android:id="@+id/txtDialogStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_badge"
+            android:paddingStart="10dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="3dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            tools:text="In Transit" />
+
+        <TextView
+            style="@style/SectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="SENDER" />
+
+        <TextView
+            android:id="@+id/txtDialogSender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorDark"
+            android:textSize="13sp"
+            tools:text="John Doe · +1 555 000 111\n123 Main St" />
+
+        <TextView
+            style="@style/SectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="RECEIVER" />
+
+        <TextView
+            android:id="@+id/txtDialogReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorDark"
+            android:textSize="13sp"
+            tools:text="Jane Smith · +1 555 222 333\n456 Oak Ave" />
+
+        <TextView
+            style="@style/SectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="PARCEL" />
+
+        <TextView
+            android:id="@+id/txtDialogParcelInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorDark"
+            android:textSize="13sp"
+            tools:text="Type: Document · Weight: 1.2 kg\nService: Express · Priority: High\nCharge: ৳120 · COD: ৳0\nPayment: Cash (Paid)" />
+
+        <TextView
+            android:id="@+id/txtDialogHistoryLabel"
+            style="@style/SectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="HISTORY" />
+
+        <LinearLayout
+            android:id="@+id/layoutDialogHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/btnCancelParcel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorDanger"
+            android:text="Cancel Parcel"
+            android:textColor="@color/colorWhite"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+</ScrollView>

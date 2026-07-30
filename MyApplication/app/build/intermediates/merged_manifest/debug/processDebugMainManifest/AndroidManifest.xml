@@ -49,6 +49,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="com.emranhss.myapplication.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name="com.emranhss.myapplication.CustomerDashboard"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />

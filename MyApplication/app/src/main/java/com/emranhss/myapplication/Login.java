@@ -47,6 +47,9 @@ public class Login extends AppCompatActivity {
 
         btnLogin.setOnClickListener(v -> login());
 
+        findViewById(R.id.txtGoToRegister).setOnClickListener(v ->
+                startActivity(new Intent(Login.this, RegisterActivity.class)));
+
     }
 
     private void init() {
